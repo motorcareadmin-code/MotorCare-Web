@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+<meta name="color-scheme" content="light dark">
 <title>MotorCare Web · Mantenimiento preventivo para talleres de motos</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -36,6 +39,7 @@ section{padding:72px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,
 .alt{background:var(--surf);border-block:1px solid var(--line)}.lead{color:var(--mut);max-width:60ch}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 label{display:block;font-weight:600;margin:14px 0 4px;font-size:.95rem}
+.field-help{display:block;color:var(--mut);font-size:.78rem;line-height:1.45;margin:4px 0 2px}
 input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px}
 input[aria-invalid=true],textarea[aria-invalid=true]{border-color:var(--bad)}
 .err{color:var(--bad);font-size:.85rem;min-height:1.1em;margin:3px 0 0}.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin-top:12px}.chk input{width:auto;margin-top:5px}
@@ -278,9 +282,51 @@ body.ldg :is(.hx h1,.hxp,.hxb,.chips,.gcard,.rider,.road .ln,.city,.lamps){anima
 @media(max-width:420px){.side .me{max-width:112px}.side .me small{font-size:.68rem}.side button{padding:9px;font-size:.78rem}.mc-upload .mc-file-name{display:none}.card{padding:14px}}
 
 
-.mc-community-head{overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surf)),var(--surf))}.mc-community-title{display:flex;align-items:center;justify-content:space-between;gap:14px}.mc-kicker{font-size:.7rem;font-weight:800;letter-spacing:.16em;color:var(--accent)}.mc-community-title h2{margin:5px 0}.mc-community-mark{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 14%,var(--surf));color:var(--accent);font-size:1.7rem}.mc-postform{padding-top:12px}.mc-postform textarea{box-sizing:border-box;width:100%;border-radius:15px}.mc-upload-large{border-style:solid;min-height:66px}.mc-post-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.mc-post-actions small{color:var(--mut);max-width:58ch}.mc-upload-progress{font-size:.82rem;color:var(--mut);min-height:0}.mc-post-card{margin:14px 0;overflow:hidden}.mc-post-author{display:flex;align-items:center;gap:10px}.mc-post-author>span:nth-child(2){display:grid;min-width:0}.mc-post-author small{color:var(--mut);font-size:.76rem}.mc-post-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 15%,var(--surf));color:var(--accent);font-weight:800}.mc-post-avatar img{width:100%;height:100%;object-fit:cover}.mc-pending{margin-left:auto;background:#fff4d6;color:#875c00;border-radius:99px;padding:5px 10px;font-size:.72rem;font-weight:700}.mc-post-copy{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}.mc-post-media{display:block;width:100%;max-height:520px;object-fit:contain;background:#0b1220;border-radius:14px;margin:10px 0}.mc-post-tools{display:flex;gap:14px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}.mc-text-action{border:0;background:transparent;color:var(--accent);font:inherit;font-size:.84rem;font-weight:700;cursor:pointer;padding:5px 0}.mc-text-action.mc-reject{color:#c0392b}.mc-text-action.mc-approve{color:#16834a}.mc-comments{padding-top:10px}.mc-comments>p{overflow-wrap:anywhere;padding:7px 0;margin:0}.mc-comment-image{max-width:min(220px,100%);max-height:220px;object-fit:contain;border-radius:10px;margin-top:6px}.mc-comment{margin-top:10px}
-@media(max-width:600px){.mc-community-title{align-items:flex-start}.mc-community-mark{width:42px;height:42px;flex:0 0 42px}.mc-post-actions{align-items:stretch}.mc-post-actions .btn{width:100%}.mc-post-actions small{max-width:none}.mc-post-card{padding:13px}.mc-post-media{max-height:360px}.mc-comment{grid-template-columns:minmax(0,1fr) 44px}.mc-comment .mc-upload{width:44px;box-sizing:border-box;justify-content:center;padding:7px}.mc-comment .btn{grid-column:1/-1}}
+.mc-community-head{overflow:hidden;position:relative;border:1.5px solid color-mix(in srgb,var(--accent) 32%,var(--line));border-radius:20px;background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 9%,var(--surf)),var(--surf) 58%);box-shadow:0 14px 34px rgba(15,23,42,.08);padding:26px}
+#mcFeed{display:grid;gap:14px;margin-top:18px}
+.mc-community-title{padding-bottom:14px;border-bottom:1px solid var(--line)}
+.mc-postform textarea{min-height:112px;padding:14px 16px;border:1.5px solid var(--line);background:var(--bg);transition:border-color .2s,box-shadow .2s}
+.mc-postform textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 13%,transparent);outline:none}
+.mc-post-card{border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.06);padding:20px;transition:transform .2s,box-shadow .2s}
+.mc-post-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(15,23,42,.1)}
+.mc-post-tools{border-bottom-color:var(--line);gap:18px}
+.mc-comments{background:color-mix(in srgb,var(--bg) 72%,var(--surf));border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px}
+.mc-comment input{min-width:0}
+.mc-upload-large{border-radius:13px;background:color-mix(in srgb,var(--accent) 4%,var(--surf));padding:12px 14px}.mc-community-title{display:flex;align-items:center;justify-content:space-between;gap:14px}.mc-kicker{font-size:.7rem;font-weight:800;letter-spacing:.16em;color:var(--accent)}.mc-community-title h2{margin:5px 0}.mc-community-mark{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 14%,var(--surf));color:var(--accent);font-size:1.7rem}.mc-postform{padding-top:12px}.mc-postform textarea{box-sizing:border-box;width:100%;border-radius:15px}.mc-upload-large{border-style:solid;min-height:66px}.mc-post-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.mc-post-actions small{color:var(--mut);max-width:58ch}.mc-upload-progress{font-size:.82rem;color:var(--mut);min-height:0}.mc-post-card{margin:14px 0;overflow:hidden}.mc-post-author{display:flex;align-items:center;gap:10px}.mc-post-author>span:nth-child(2){display:grid;min-width:0}.mc-post-author small{color:var(--mut);font-size:.76rem}.mc-post-avatar{width:40px;height:40px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 15%,var(--surf));color:var(--accent);font-weight:800}.mc-post-avatar img{width:100%;height:100%;object-fit:cover}.mc-pending{margin-left:auto;background:#fff4d6;color:#875c00;border-radius:99px;padding:5px 10px;font-size:.72rem;font-weight:700}.mc-post-copy{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.55}.mc-post-media{display:block;width:100%;max-height:520px;object-fit:contain;background:#0b1220;border-radius:14px;margin:10px 0}.mc-post-tools{display:flex;gap:14px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}.mc-text-action{border:0;background:transparent;color:var(--accent);font:inherit;font-size:.84rem;font-weight:700;cursor:pointer;padding:5px 0}.mc-text-action.mc-reject{color:#c0392b}.mc-text-action.mc-approve{color:#16834a}.mc-comments{padding-top:10px}.mc-comments>p{overflow-wrap:anywhere;padding:7px 0;margin:0}.mc-comment-image{max-width:min(220px,100%);max-height:220px;object-fit:contain;border-radius:10px;margin-top:6px}.mc-comment{margin-top:10px}
+@media(max-width:600px){.mc-community-head{padding:17px}.mc-community-title{align-items:flex-start}.mc-community-mark{width:42px;height:42px;flex:0 0 42px}.mc-post-actions{align-items:stretch}.mc-post-actions .btn{width:100%}.mc-post-actions small{max-width:none}.mc-post-card{padding:13px}.mc-post-media{max-height:360px}.mc-comment{grid-template-columns:minmax(0,1fr) 44px}.mc-comment .mc-upload{width:44px;box-sizing:border-box;justify-content:center;padding:7px}.mc-comment .btn{grid-column:1/-1}}
 
+
+/* Comunidad MotoCare: presentación visual, lectura y controles responsive */
+.mc-community-head{position:relative;isolation:isolate;padding:clamp(18px,3vw,30px);border:1px solid color-mix(in srgb,var(--acc) 26%,var(--line));border-radius:24px;background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 11%,var(--surf)),var(--surf) 55%,color-mix(in srgb,#0f766e 7%,var(--surf)));box-shadow:0 18px 48px rgba(15,23,42,.09)}
+.mc-community-glow{position:absolute;z-index:-1;width:220px;height:220px;right:-70px;top:-110px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 22%,transparent),transparent 70%);pointer-events:none}
+.mc-community-title h2{font-size:clamp(1.55rem,4vw,2.35rem);letter-spacing:-.045em}.mc-community-title p{max-width:62ch;margin:8px 0 0}.mc-community-mark{box-shadow:0 8px 24px color-mix(in srgb,var(--acc) 18%,transparent)}
+.mc-community-highlights{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 8px}.mc-community-highlights span{font-size:.76rem;font-weight:700;border:1px solid var(--line);background:color-mix(in srgb,var(--surf) 82%,transparent);border-radius:999px;padding:7px 11px;color:var(--mut)}
+.mc-compose-label{font-size:.9rem;font-weight:800;margin:6px 0 -5px}.mc-postform{padding-top:14px}.mc-postform textarea{background:color-mix(in srgb,var(--bg) 76%,var(--surf));border:1px solid var(--line);min-height:116px}.mc-upload-large{border:1.5px dashed color-mix(in srgb,var(--acc) 40%,var(--line));background:color-mix(in srgb,var(--acc) 5%,var(--surf));min-height:76px}.mc-upload-large:hover{border-style:solid}.mc-post-actions small{line-height:1.45}.mc-feed-heading{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:24px 2px 8px}.mc-feed-heading h3{margin:4px 0 0;font-size:1.25rem}.mc-feed-live{font-size:.76rem;font-weight:700;color:var(--ok);border:1px solid color-mix(in srgb,var(--ok) 28%,var(--line));border-radius:99px;padding:6px 10px;white-space:nowrap}
+.mc-post-card{border-radius:20px;padding:clamp(14px,2.5vw,22px);border:1px solid color-mix(in srgb,var(--line) 88%,var(--acc));box-shadow:0 10px 30px rgba(15,23,42,.055)}.mc-post-card:hover{transform:translateY(-2px)}.mc-post-author{gap:12px}.mc-post-avatar{width:46px;height:46px;flex:0 0 46px;border:2px solid color-mix(in srgb,var(--acc) 24%,var(--line));box-shadow:0 3px 10px rgba(15,23,42,.1)}.mc-post-author b{font-size:.96rem}.mc-post-copy{font-size:.96rem;margin:15px 0;line-height:1.65}.mc-post-media{max-height:560px;margin:14px 0;border:1px solid rgba(148,163,184,.18)}.mc-post-tools{padding:12px 0 5px}.mc-comments{border-radius:16px;padding:14px;background:color-mix(in srgb,var(--bg) 82%,var(--surf))}.mc-comment-item{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid var(--line)}.mc-comment-item:last-of-type{border-bottom:0}.mc-comment-avatar{width:30px;height:30px;flex:0 0 30px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:color-mix(in srgb,var(--acc) 14%,var(--surf));color:var(--acc);font-size:.75rem;font-weight:800}.mc-comment-avatar img{width:100%;height:100%;object-fit:cover}.mc-comment-body{min-width:0;flex:1}.mc-comment-body b{font-size:.8rem}.mc-comment-body p{margin:2px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.87rem}.mc-comment-image{display:block}.mc-comment{padding-top:8px}
+/* Chat: avatar visible à côté du nom, y compris sur petits écrans */
+#msgs{gap:12px;padding:14px}.mc-chat-row{display:flex;align-items:flex-end;gap:8px;width:100%;max-width:100%;align-self:flex-start}.mc-chat-row.mine{align-self:flex-end;flex-direction:row-reverse}.mc-chat-avatar{width:34px;height:34px;flex:0 0 34px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,var(--acc),#0f766e);color:#fff;font-size:.82rem;font-weight:800;border:2px solid var(--surf);box-shadow:0 2px 8px rgba(15,23,42,.14)}.mc-chat-avatar img{width:100%;height:100%;object-fit:cover}.mc-chat-row .b{max-width:min(78%,560px);align-self:auto}.mc-chat-row .b small{line-height:1.4}.mc-chat-row .b small b{font-weight:800}
+@media(max-width:600px){.mc-community-head{padding:17px;border-radius:18px}.mc-community-title{gap:8px}.mc-community-mark{width:40px;height:40px;flex-basis:40px;border-radius:13px;font-size:1.3rem}.mc-community-highlights{gap:6px;margin-top:15px}.mc-community-highlights span{font-size:.69rem;padding:6px 8px}.mc-post-card{margin:11px 0;padding:13px;border-radius:16px}.mc-post-avatar{width:40px;height:40px;flex-basis:40px}.mc-post-media{max-height:390px;border-radius:11px}.mc-feed-heading{margin-top:20px}.mc-feed-heading h3{font-size:1.1rem}.mc-upload-large{gap:8px;padding:10px}.mc-upload-large .mc-upicon{width:34px;height:34px}.mc-upload-large small{font-size:.7rem;line-height:1.35}.mc-post-actions{gap:10px}.mc-post-actions small{font-size:.73rem}.mc-post-actions .btn{width:100%}.mc-comment{grid-template-columns:minmax(0,1fr) 42px;gap:7px}.mc-comment .mc-upload{width:42px;min-height:42px}.mc-comment .btn{grid-column:1/-1;width:100%}#msgs{padding:10px;gap:10px;height:min(58vh,480px)}.mc-chat-avatar{width:30px;height:30px;flex-basis:30px}.mc-chat-row .b{max-width:calc(100vw - 104px);padding:9px 11px}.cmp{align-items:stretch}.cmp input{min-width:0}}
+@media(max-width:380px){.mc-community-title h2{font-size:1.42rem}.mc-community-mark{display:none}.mc-community-highlights span{font-size:.64rem}.mc-upload-large .mc-file-name{display:none}.mc-chat-row .b{max-width:calc(100vw - 92px)}}
+
+
+/* Actualización comunidad: reacciones y stickers */
+.mc-like-action{font-weight:800}.mc-like-action.liked{color:#e11d48}
+.mc-comment-extra{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mc-comment-extra .mc-upload{width:42px;min-height:38px;padding:5px;justify-content:center}
+.mc-comment-extra .mc-upload .mc-upicon{width:28px;height:28px}
+.mc-sticker-tray{grid-column:1/-1;display:flex;gap:7px;flex-wrap:wrap;padding:9px;border:1px solid var(--line);border-radius:12px;background:var(--surf)}
+.mc-sticker-tray[hidden]{display:none}
+.mc-sticker-tray button{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:7px 9px;font-size:1.25rem;cursor:pointer}
+.mc-sticker-tray button:hover{border-color:var(--acc);transform:translateY(-1px)}
+.mc-comment .btn{grid-column:1/-1;justify-self:start}
+.mc-chat-row .mc-chat-avatar img{display:block}
+@media(max-width:600px){.mc-comment-extra{grid-column:1/-1}.mc-comment .btn{width:100%}}
+
+.mc-thread-button{display:flex!important;align-items:center;gap:9px!important;min-width:0}
+.mc-thread-avatar{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--acc),#0f766e);color:#fff;font-size:.8rem;font-weight:800}
+.mc-thread-avatar img{display:block;width:100%;height:100%;object-fit:cover}
+.mc-thread-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+.mc-thread-unread{color:#ef4444;font-size:1rem;flex:0 0 auto}
 </style>
 </head>
 <body><div id="ld" role="status" aria-label="Cargando"><div class="ldc"><div data-gauge="ld" class="gv"></div><b class="ldt">Motor<span>Care</span> Web</b><div class="ldb"><i id="ldi"></i></div><small id="ldp">Calentando motores… 0%</small></div></div>
@@ -356,10 +402,10 @@ body.ldg :is(.hx h1,.hxp,.hxb,.chips,.gcard,.rider,.road .ln,.city,.lamps){anima
 <label for="lp">Contraseña</label><input id="lp" type="password" autocomplete="current-password"><p class="err"></p>
 <button class="btn" style="width:100%;margin-top:10px">Ingresar</button><p style="text-align:center"><a href="#" data-tab="recuperar">¿Olvidaste tu contraseña?</a></p></form>
 
-<form id="fReg" novalidate data-pane="registro"><label for="rn">Nombre de usuario</label><input id="rn" autocomplete="username" maxlength="20" placeholder="ej. taller_juan"><p class="err"></p>
-<label for="re">Correo electrónico</label><input id="re" type="email" autocomplete="email" maxlength="80"><p class="err"></p>
-<label for="rp">Contraseña</label><input id="rp" type="password" autocomplete="new-password" maxlength="64"><div class="meter"><i id="meter"></i></div><p class="err"></p>
-<label for="rp2">Repite la contraseña</label><input id="rp2" type="password" autocomplete="new-password" maxlength="64"><p class="err"></p>
+<form id="fReg" novalidate data-pane="registro"><label for="rn">Nombre de usuario</label><input id="rn" autocomplete="username" maxlength="20" placeholder="ej. taller_juan"><small class="field-help">De 3 a 20 caracteres. Solo letras, números, punto (.) y guion bajo (_).</small><p class="err"></p>
+<label for="re">Correo electrónico</label><input id="re" type="email" autocomplete="email" maxlength="80" placeholder="nombre@correo.com"><small class="field-help">Introduce un correo válido, con nombre, @ y dominio (por ejemplo, usuario@gmail.com).</small><p class="err"></p>
+<label for="rp">Contraseña</label><input id="rp" type="password" autocomplete="new-password" maxlength="64" placeholder="Crea una contraseña segura"><small class="field-help">Mínimo 8 caracteres e incluye al menos una letra y un número. Máximo 64 caracteres.</small><div class="meter"><i id="meter"></i></div><p class="err"></p>
+<label for="rp2">Repite la contraseña</label><input id="rp2" type="password" autocomplete="new-password" maxlength="64" placeholder="Escribe la misma contraseña"><small class="field-help">Debe coincidir exactamente con la contraseña anterior.</small><p class="err"></p>
 <label class="chk"><input type="checkbox" id="rt"><span>Acepto los <a href="#" data-legal="terminos">Términos y condiciones</a> y la <a href="#" data-legal="privacidad">Política de privacidad</a>.</span></label><p class="err"></p>
 <label class="chk"><input type="checkbox" id="rc"><span>Doy mi <a href="#" data-legal="consentimiento">consentimiento</a> para el tratamiento de mis datos personales.</span></label><p class="err"></p>
 <button class="btn" style="width:100%;margin-top:10px">Crear cuenta</button></form>
@@ -383,6 +429,8 @@ body.ldg :is(.hx h1,.hxp,.hxb,.chips,.gcard,.rider,.road .ln,.city,.lamps){anima
 const SUPABASE_URL = "https://nkczbxwngvldvymlnhhd.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY ="sb_publishable_p-_BqpsBcgM7ZTH-czS6tw_RzkncD3C";
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+// Bucket privado de escritura / lectura pública para vídeos de la comunidad (ver SQL complementario).
+const MC_COMMUNITY_VIDEO_BUCKET='mc-community-media';
 let authUser=null, authProfile=null, recoveryMode=false, recoveryCodeVerified=false, pendingSignupEmail='', pendingRecoveryEmail='', signupCodeDeadline=0, signupCodeTimerId=null, recoveryCodeDeadline=0, recoveryCodeTimerId=null;
 function stopSignupCodeTimer(){if(signupCodeTimerId){clearInterval(signupCodeTimerId);signupCodeTimerId=null}}
 function startSignupCodeTimer(){stopSignupCodeTimer();signupCodeDeadline=Date.now()+180000;const status=$('#signupCodeStatus'),timer=$('#signupCodeTimer'),input=$('#signupCode'),resend=$('#resendSignupCode');status.textContent='Esperando el código de confirmación…';timer.style.color='var(--muted)';resend.textContent='Reenviar código';const tick=()=>{const left=Math.max(0,Math.ceil((signupCodeDeadline-Date.now())/1000));if(left<=0){stopSignupCodeTimer();input.value='';status.textContent='Código vencido';timer.textContent='El tiempo de verificación terminó.';timer.style.color='#c0392b';resend.textContent='El código venció. Toca aquí para reenviar uno nuevo';return}timer.textContent='Tiempo restante: '+String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');};tick();signupCodeTimerId=setInterval(tick,250)}
@@ -435,7 +483,7 @@ $('#fReg').onsubmit=async e=>{e.preventDefault();const em=$('#re').value.trim().
  try{
   const {data,error}=await sb.auth.signUp({email:em,password:$('#rp').value,options:{data:{username,consent:true},emailRedirectTo:window.location.href.split('#')[0]}});
   if(error)throw error;
-  if(data.session){const profile=await loadAuthProfile(data.user);dA.close();render();await showAlert('success','¡Registro completo!','Tu cuenta de MotoCare Web está lista para usar.');}
+  if(data.session){const profile=await loadAuthProfile(data.user);if(profile)await mcCloudLoad();dA.close();render();await showAlert('success','¡Registro completo!','Tu cuenta de MotoCare Web está lista para usar.');}
   else {pendingSignupEmail=em;$('#signupCode').value='';$('#signupCode').nextElementSibling.textContent='';tab('verificar');startSignupCodeTimer();toast('Revisa tu correo e introduce el código de confirmación.')}
  }catch(err){console.error(err);$('#re').nextElementSibling.textContent=err.message||'No se pudo crear la cuenta.'}
  finally{b.disabled=false}
@@ -559,22 +607,89 @@ function list(el,arr){el.replaceChildren(...(arr.length?arr.map(row):[Object.ass
 const SERV={'Cambio de aceite':3000,'Frenos':6000,'Kit de arrastre':12000,'Bujía':8000,'Filtro de aire':6000,'Neumáticos':15000},SEDES=['Centro','Norte','Sur','Este','Oeste'],MEC=['Andrés M.','Luisa P.','Ramón G.'];
 const MES=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],HORAS=['08:00','09:00','10:00','11:00','13:00','14:00','15:00','16:00'],EST=['En proceso','Listo para retirar','Entregada'],CE=['Pendiente','Confirmada','Completada','Cancelada'],CB={Pendiente:'warn',Confirmada:'ok',Completada:'',Cancelada:'bad'},LB={ok:'En regla',warn:'Próximo',bad:'Vencido'},RK={bad:2,warn:1,ok:0};
 const ASE=[['¿Cada cuántos km cambio el aceite?','En motos de 125 a 200 cc, cada 2.500–3.000 km o 3 meses, lo que ocurra primero. Usa la viscosidad del manual y revisa el nivel cada semana.'],['Señales de que los frenos necesitan cambio','Chirrido metálico, palanca que baja casi hasta el puño, vibración al frenar o pastillas con menos de 2 mm de material.'],['Cuidado de la cadena y el kit de arrastre','Límpiala y lubrícala cada 500–800 km. Debe tener de 2 a 3 cm de juego. Cambia cadena, piñón y corona siempre juntos.'],['Presión correcta de los neumáticos','Revísala en frío cada semana con los valores del manual (suelen estar entre 28 y 32 psi). Poca presión gasta más gasolina y desgasta la goma.'],['Cómo rodar una moto nueva','En los primeros 1.000 km evita acelerones y altas revoluciones. Haz el primer servicio entre 500 y 1.000 km.'],['Moto parada por mucho tiempo','Llena el tanque, carga o desconecta la batería, infla los neumáticos y cúbrela en un lugar seco.']];
-const DB0=()=>{const B=[['Carlos Pérez','AB123CD','Bera','R1 200',2023,12480,'0412-5550101','Centro'],['María Gómez','XY456ZK','Bera','SBR 200',2022,8920,'0414-5550102','Norte'],['José Rivas','LM789NP','Suzuki','GN 125',2019,15300,'0416-5550103','Sur'],['Ana Torres','QR321TS','Yamaha','FZ 150',2022,4150,'0424-5550104','Centro'],['Luis Mendoza','TT554KL','Honda','CG 150',2018,21800,'0412-5550105','Norte'],['Daniela Ríos','PO908MN','Keeway','RK 150',2023,2650,'0414-5550106','Centro'],['Pedro Salas','HG142BV','Skygo','Mega 200',2021,9700,'0416-5550107','Sur'],['Rosa Linares','ZX777QW','Haojue','Lucky 125',2020,13100,'0424-5550108','Norte'],['Miguel Ortega','BR200MO','Bera','R1 200',2024,6300,'0412-5550109','Centro'],['Sofía Castro','VN150SC','Empire','Horse 150',2021,17400,'0414-5550110','Sur'],['Javier León','KW125JL','Keeway','TX 125',2020,11250,'0416-5550111','Norte'],['Elena Marín','HD250EM','Honda','XR 150L',2022,7800,'0424-5550112','Centro']];
-const E='Entregada',O=[['AB123CD','Cambio de aceite',9800,18,'2026-07-12','Aceite 20W50',0,E],['AB123CD','Frenos',7000,30,'2026-04-10','Pastillas traseras',1,E],['AB123CD','Bujía',8000,8,'2026-05-03','',2,E],['AB123CD','Filtro de aire',9000,7,'2026-09-14','',0,E],['AB123CD','Cambio de aceite',12100,18,'2026-10-14','Servicio por kilometraje',1,'En proceso'],['XY456ZK','Kit de arrastre',6000,45,'2026-06-02','Cadena y piñones',2,E],['XY456ZK','Cambio de aceite',6000,18,'2026-06-02','',2,E],['XY456ZK','Neumáticos',8000,76,'2026-09-05','Par de neumáticos',1,E],['LM789NP','Frenos',11000,30,'2026-05-20','Pastillas delanteras',0,E],['LM789NP','Neumáticos',9000,76,'2026-02-18','Par de neumáticos',1,E],['LM789NP','Cambio de aceite',13000,18,'2026-08-09','',0,E],['QR321TS','Cambio de aceite',3000,18,'2026-08-15','',1,E],['TT554KL','Cambio de aceite',18900,18,'2026-09-02','Aceite semisintético',2,E],['TT554KL','Kit de arrastre',9000,45,'2026-03-11','',0,E],['TT554KL','Filtro de aire',16000,7,'2026-06-25','',1,E],['TT554KL','Frenos',20000,32,'2026-10-06','Discos rectificados',2,E],['PO908MN','Cambio de aceite',1000,18,'2026-06-30','Primer servicio',1,E],['HG142BV','Frenos',4000,30,'2026-03-22','',0,E],['HG142BV','Cambio de aceite',6900,18,'2026-09-20','',2,E],['ZX777QW','Bujía',10000,8,'2026-07-08','',1,E],['ZX777QW','Cambio de aceite',11000,18,'2026-08-01','',1,E],['BR200MO','Cambio de aceite',1000,18,'2026-04-18','Primer servicio',0,E],['BR200MO','Cambio de aceite',4000,18,'2026-07-30','',0,E],['BR200MO','Frenos',5000,30,'2026-09-28','',2,'Listo para retirar'],['VN150SC','Kit de arrastre',12000,45,'2026-02-27','',1,E],['VN150SC','Cambio de aceite',15000,18,'2026-08-22','',2,E],['VN150SC','Neumáticos',16000,76,'2026-10-12','Cambio completo',0,'En proceso'],['KW125JL','Cambio de aceite',9000,18,'2026-06-14','',1,E],['KW125JL','Bujía',8000,8,'2026-05-09','',1,E],['HD250EM','Cambio de aceite',6000,18,'2026-09-09','',2,E],['HD250EM','Filtro de aire',6000,7,'2026-09-09','',2,E]];
-const Pt=[['Aceite 20W50 (1 L)','Lubricantes','Universal',6,24,8,0],['Aceite 10W40 sintético (1 L)','Lubricantes','Universal',11,10,6,4],['Pastillas freno delanteras','Frenos','Bera SBR / R1 200',9,12,0,5],['Pastillas freno traseras','Frenos','Bera SBR / R1 200',7,6,4,3],['Disco de freno 240 mm','Frenos','Yamaha FZ 150',34,3,0,1],['Kit de arrastre 428H','Transmisión','125–200 cc',32,4,9,2],['Cadena 428H-120L','Transmisión','Universal 125 cc',14,8,5,0],['Bujía NGK CR7HSA','Motor','Suzuki GN, Yamaha FZ',4,30,15,11],['Bujía NGK CR8E','Motor','Bera R1 200',5,14,9,6],['Filtro de aire 150 cc','Filtros','Yamaha FZ 150',7,0,6,3],['Filtro de aceite','Filtros','Honda CG 150',4,18,10,7],['Neumático trasero 140/70-17','Neumáticos','Bera R1 200',48,3,0,6],['Neumático delantero 110/70-17','Neumáticos','Bera R1 200',41,2,3,0],['Batería 12V 9Ah','Electricidad','Universal',28,7,2,0],['Amortiguador trasero','Suspensión','Honda CG 150',26,2,4,0],['Cable de clutch','Controles','Suzuki GN 125',5,10,4,8],['Carenado frontal','Carrocería','Bera R1 200',72,1,0,0],['Espejo retrovisor (par)','Carrocería','Universal',12,9,5,4],['Aceite de horquilla','Suspensión','Universal',9,6,2,5],['Bombillo LED faro','Electricidad','Universal',8,20,12,9]];
-const C=[['Carlos Pérez','AB123CD','2026-10-20','09:00','Centro','Cambio de aceite','Pendiente'],['Ana Torres','QR321TS','2026-10-21','10:00','Centro','Frenos','Confirmada'],['Miguel Ortega','BR200MO','2026-10-22','14:00','Centro','Cambio de aceite','Pendiente'],['Luis Mendoza','TT554KL','2026-10-23','08:00','Norte','Cambio de aceite','Confirmada'],['Sofía Castro','VN150SC','2026-10-15','11:00','Sur','Neumáticos','Completada'],['Rosa Linares','ZX777QW','2026-10-19','10:00','Norte','Bujía','Confirmada'],['Javier León','KW125JL','2026-10-19','15:00','Norte','Frenos','Pendiente'],['Pedro Salas','HG142BV','2026-10-24','09:00','Sur','Cambio de aceite','Pendiente'],['Elena Marín','HD250EM','2026-10-27','11:00','Centro','Kit de arrastre','Confirmada'],['Daniela Ríos','PO908MN','2026-10-14','13:00','Centro','Cambio de aceite','Completada']];
-return {bikes:B.map((b,i)=>({id:i+1,owner:'',on:b[0],placa:b[1],marca:b[2],modelo:b[3],anio:b[4],km:b[5],tel:b[6],sede:b[7]})),orders:O.map((o,i)=>({id:i+1,placa:o[0],tipo:o[1],km:o[2],costo:o[3],fecha:o[4],nota:o[5],mec:o[6],estado:o[7]})),parts:Pt.map((p,i)=>({id:i+1,n:p[0],c:p[1],m:p[2],p:p[3],s:{Centro:p[4],Norte:p[5],Sur:p[6]}})),citas:C.map((c,i)=>({id:i+1,on:c[0],owner:'',placa:c[1],fecha:c[2],hora:c[3],sede:c[4],servicio:c[5],estado:c[6]})),chat:{}}};
-const db=()=>{let d=store.get('mc_db3');if(!d){d=DB0();store.set('mc_db3',d)}return d};
+/* Datos reales: una cuenta nueva empieza sin motos, órdenes, citas ni inventario de ejemplo. */
+const DB0=()=>({bikes:[],orders:[],parts:[],citas:[],chat:{}});
+const dbKey=()=>authProfile?.id?'mc_db3_user_'+authProfile.id:'mc_db3_guest';
+const db=()=>{
+ const key=dbKey();let d=store.get(key);
+ if(!d){
+  d=DB0();
+  // Migración segura: conserva datos reales del almacenamiento anterior, pero nunca copia las filas demo.
+  const legacy=authProfile?store.get('mc_db3'):null;
+  if(legacy&&authProfile){
+   const isDemoBike=b=>MC_DEMO_PLATES.has(P(b?.placa));
+   const isDemoPart=p=>MC_DEMO_PARTS.has(p?.n);
+   if(authProfile.role==='admin'){
+    d.bikes=(legacy.bikes||[]).filter(b=>!isDemoBike(b));
+    d.orders=(legacy.orders||[]).filter(o=>!MC_DEMO_PLATES.has(P(o?.placa)));
+    d.citas=(legacy.citas||[]).filter(c=>!MC_DEMO_PLATES.has(P(c?.placa)));
+    d.parts=(legacy.parts||[]).filter(p=>!isDemoPart(p));
+    d.chat=legacy.chat||{};
+   }else{
+    d.bikes=(legacy.bikes||[]).filter(b=>b.owner===authProfile.em&&!isDemoBike(b));
+    const owned=new Set(d.bikes.map(b=>P(b.placa)));
+    d.orders=(legacy.orders||[]).filter(o=>owned.has(P(o?.placa))&&!MC_DEMO_PLATES.has(P(o?.placa)));
+    d.citas=(legacy.citas||[]).filter(c=>c.owner===authProfile.em&&!MC_DEMO_PLATES.has(P(c?.placa)));
+    d.parts=(legacy.parts||[]).filter(p=>!isDemoPart(p));
+    d.chat=legacy.chat?.[authProfile.em]?{[authProfile.em]:legacy.chat[authProfile.em]}:{};
+   }
+  }
+  store.set(key,d);
+ }
+ return d;
+};
 let mcCloudSyncTimer=null,mcCloudBusy=false;
-function save(d){store.set('mc_db3',d);if(authProfile){clearTimeout(mcCloudSyncTimer);mcCloudSyncTimer=setTimeout(()=>mcCloudSync(d).catch(e=>console.warn('Sincronización MotoCare:',e)),450)}}
-async function mcCloudSync(d){if(mcCloudBusy||!authProfile)return;mcCloudBusy=true;try{const uid=authProfile.id,mail=authProfile.em;for(const [table,items] of [['mc_bikes',d.bikes],['mc_appointments',d.citas],...(authProfile.role==='admin'?[['mc_orders',d.orders]]:[])]){for(const item of items){const linkedBike=table==='mc_orders'?d.bikes.find(b=>b.placa===item.placa):null;const ownerEmail=item.owner||(linkedBike?.owner)||mail;let ownerId=uid;if(ownerEmail!==mail){const {data:prof}=await sb.from('profiles').select('id').eq('email',ownerEmail).maybeSingle();if(prof?.id)ownerId=prof.id;else continue}const payload={owner_id:ownerId,data:{...item,owner:ownerEmail}};if(item.cloud_id){const {error}=await sb.from(table).update(payload).eq('id',item.cloud_id);if(error)throw error}else{const {data:created,error}=await sb.from(table).insert(payload).select('id').single();if(error)throw error;item.cloud_id=created.id;store.set('mc_db3',d)}}}if(authProfile.role==='admin'){for(const item of d.parts){const payload={data:item};if(item.cloud_id){const {error}=await sb.from('mc_inventory').update(payload).eq('id',item.cloud_id);if(error)throw error}else{const {data:created,error}=await sb.from('mc_inventory').insert(payload).select('id').single();if(error)throw error;item.cloud_id=created.id;store.set('mc_db3',d)}}}}finally{mcCloudBusy=false}}
-async function mcCloudLoad(){if(!authProfile)return;const d=db(),uid=authProfile.id,admin=authProfile.role==='admin';for(const [table,key] of [['mc_bikes','bikes'],['mc_appointments','citas'],['mc_orders','orders']]){let q=sb.from(table).select('id,owner_id,data,created_at');if(!admin)q=q.eq('owner_id',uid);const {data,error}=await q;if(error){console.warn('No se pudieron cargar '+table,error);continue}for(const row of data||[]){const item={...row.data,cloud_id:row.id};const ix=d[key].findIndex(x=>String(x.id)===String(item.id)||x.cloud_id===row.id);if(ix>=0)d[key][ix]={...d[key][ix],...item};else d[key].push(item)}}if(admin){const {data:parts,error}=await sb.from('mc_inventory').select('id,data');if(!error)for(const row of parts||[]){const item={...row.data,cloud_id:row.id};const ix=d.parts.findIndex(x=>String(x.id)===String(item.id)||x.cloud_id===row.id);if(ix>=0)d.parts[ix]={...d.parts[ix],...item};else d.parts.push(item)}}store.set('mc_db3',d)}
+function save(d){store.set(dbKey(),d);if(authProfile){clearTimeout(mcCloudSyncTimer);mcCloudSyncTimer=setTimeout(()=>mcCloudSync(d).catch(e=>console.warn('Sincronización MotoCare:',e)),450)}}
+async function mcCloudSync(d){if(mcCloudBusy||!authProfile)return;mcCloudBusy=true;try{const uid=authProfile.id,mail=authProfile.em;for(const [table,items] of [['mc_bikes',d.bikes],['mc_appointments',d.citas],...(authProfile.role==='admin'?[['mc_orders',d.orders]]:[])]){for(const item of items){const linkedBike=table==='mc_orders'?d.bikes.find(b=>b.placa===item.placa):null;const ownerEmail=item.owner||(linkedBike?.owner)||mail;let ownerId=uid;if(ownerEmail!==mail){const {data:prof}=await sb.from('profiles').select('id').eq('email',ownerEmail).maybeSingle();if(prof?.id)ownerId=prof.id;else continue}const payload={owner_id:ownerId,data:{...item,owner:ownerEmail}};if(item.cloud_id){const {error}=await sb.from(table).update(payload).eq('id',item.cloud_id);if(error)throw error}else{const {data:created,error}=await sb.from(table).insert(payload).select('id').single();if(error)throw error;item.cloud_id=created.id;store.set(dbKey(),d)}}}if(authProfile.role==='admin'){for(const item of d.parts){const payload={data:item};if(item.cloud_id){const {error}=await sb.from('mc_inventory').update(payload).eq('id',item.cloud_id);if(error)throw error}else{const {data:created,error}=await sb.from('mc_inventory').insert(payload).select('id').single();if(error)throw error;item.cloud_id=created.id;store.set(dbKey(),d)}}}}finally{mcCloudBusy=false}}
+const MC_DEMO_PLATES=new Set(['AB123CD','XY456ZK','LM789NP','QR321TS','TT554KL','PO908MN','HG142BV','ZX777QW','BR200MO','VN150SC','KW125JL','HD250EM']);
+const MC_DEMO_PARTS=new Set(['Aceite 20W50 (1 L)','Aceite 10W40 sintético (1 L)','Pastillas freno delanteras','Pastillas freno traseras','Disco de freno 240 mm','Kit de arrastre 428H','Cadena 428H-120L','Bujía NGK CR7HSA','Bujía NGK CR8E','Filtro de aire 150 cc','Filtro de aceite','Neumático trasero 140/70-17','Neumático delantero 110/70-17','Batería 12V 9Ah','Amortiguador trasero','Cable de clutch','Carenado frontal','Espejo retrovisor (par)','Aceite de horquilla','Bombillo LED faro']);
+async function mcCloudLoad(){
+ if(!authProfile)return;
+ const d=db(),uid=authProfile.id,admin=authProfile.role==='admin';
+ for(const [table,key] of [['mc_bikes','bikes'],['mc_appointments','citas'],['mc_orders','orders']]){
+  let q=sb.from(table).select('id,owner_id,data,created_at');
+  if(!admin)q=q.eq('owner_id',uid);
+  const {data,error}=await q;
+  if(error){console.warn('No se pudieron cargar '+table,error);continue}
+  for(const row of data||[]){
+   const raw=row.data||{};
+   // Evita que los registros de demostración de versiones anteriores reaparezcan desde la nube.
+   if((key==='bikes'&&MC_DEMO_PLATES.has(P(raw.placa)))||
+      ((key==='orders'||key==='citas')&&MC_DEMO_PLATES.has(P(raw.placa))))continue;
+   const item={...raw,cloud_id:row.id};
+   const ix=d[key].findIndex(x=>String(x.id)===String(item.id)||x.cloud_id===row.id);
+   if(ix>=0)d[key][ix]={...d[key][ix],...item};else d[key].push(item);
+  }
+ }
+ if(admin){
+  const {data:parts,error}=await sb.from('mc_inventory').select('id,data');
+  if(!error)for(const row of parts||[]){
+   const raw=row.data||{};
+   if(MC_DEMO_PARTS.has(raw.n))continue;
+   const item={...raw,cloud_id:row.id};
+   const ix=d.parts.findIndex(x=>String(x.id)===String(item.id)||x.cloud_id===row.id);
+   if(ix>=0)d.parts[ix]={...d.parts[ix],...item};else d.parts.push(item);
+  }
+ }
+ store.set(dbKey(),d);
+}
 async function mcOptimizeImage(file){if(!file||!file.type?.startsWith('image/')||file.type==='image/gif')return file;try{const bmp=await createImageBitmap(file);const max=1600,scale=Math.min(1,max/Math.max(bmp.width,bmp.height));if(scale===1&&file.size<1200000){bmp.close?.();return file}const canvas=document.createElement('canvas');canvas.width=Math.round(bmp.width*scale);canvas.height=Math.round(bmp.height*scale);canvas.getContext('2d',{alpha:false}).drawImage(bmp,0,0,canvas.width,canvas.height);bmp.close?.();const blob=await new Promise(r=>canvas.toBlob(r,'image/webp',.82));if(!blob)return file;return new File([blob],(file.name.replace(/\.[^.]+$/,'')||'imagen')+'.webp',{type:'image/webp',lastModified:Date.now()})}catch(e){console.warn('No se pudo optimizar la imagen; se subirá original.',e);return file}}
 async function mcUpload(file,folder){
  if(!file)return null;
  if(!authProfile?.id)throw new Error('Inicia sesión para subir archivos.');
  const isVideo=file.type?.startsWith('video/');
- if(isVideo)throw new Error('Video bloqueado: MotoCare todavía no puede analizar automáticamente todas sus escenas. Por seguridad, solo se permiten imágenes.');
+ if(isVideo){
+  if(!['video/mp4','video/webm','video/quicktime'].includes(file.type))throw new Error('Formato de vídeo no admitido. Usa MP4, WEBM o MOV.');
+  if(file.size>50*1024*1024)throw new Error('El vídeo supera el límite de 50 MB.');
+  const safeName=(file.name||'video').normalize('NFKD').replace(/[^a-zA-Z0-9._-]+/g,'-').slice(-90)||'video';
+  const path=`${authProfile.id}/${folder}/${Date.now()}-${safeName}`;
+  const bucket=sb.storage.from(MC_COMMUNITY_VIDEO_BUCKET);
+  const {data,error}=await bucket.upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});
+  if(error)throw new Error('No se pudo subir el vídeo. Comprueba que el bucket mc-community-media esté creado y tenga las políticas SQL indicadas. '+(error.message||''));
+  const {data:publicData}=bucket.getPublicUrl(data.path);
+  if(!publicData?.publicUrl)throw new Error('El vídeo se subió, pero no se pudo generar su enlace público.');
+  return {publicUrl:publicData.publicUrl,requiresReview:true};
+ }
  if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Formato no permitido. Usa JPG, PNG, WEBP o GIF.');
  if(file.size>10*1024*1024)throw new Error('La imagen supera el límite de 10 MB.');
  const uploadFile=await mcOptimizeImage(file);
@@ -585,12 +700,85 @@ async function mcUpload(file,folder){
  if(!data?.publicUrl)throw new Error(data?.error||'La imagen no pudo superar la revisión de seguridad.');
  return data.publicUrl;
 }
-function mcModerateText(text){const raw=String(text||'').trim(),norm=raw.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9ñ]+/g,' ').trim();if(!norm)return {ok:true};const blocked=[/\b(mierda|mierdas|puta|putas|puto|putos|joder|jodete|coño|coñazo|carajo|verga|vergacion|maricon|maricones|pendejo|pendeja|pendejos|idiota|idiotas|imbecil|imbeciles|estupido|estupida|estupidos|estupidas|maldito|maldita|malparido|malparida|hdp|hijo de puta|hija de puta|vete a la mierda|vete al carajo|chinga tu madre|chingada|cabr[oó]n|cabrona|zorra|culero|culera)\b/];const insultingDog=/\b(callate|calla|silencio|ladr[aá]|vete|muere|eres|seras|pareces|maldito|maldita)\s+(mi\s+)?perro\b/.test(norm)||/\b(perro|perra)\s+(de\s+)?mierda\b/.test(norm)||/\b(eres|seras|pareces)\s+(un|una)?\s*(perro|perra)\b/.test(norm);const insults=blocked.some(r=>r.test(norm));return insults||insultingDog?{ok:false,message:'Tu mensaje contiene una expresión ofensiva. Cámbiala por una frase respetuosa.'}:{ok:true}}
-
-async function mcSaveProfile(form){const avatar=form.querySelector('[name=avatar]')?.files?.[0],bio=form.querySelector('[name=bio]')?.value.trim()||'';let avatar_url=authProfile.avatar_url||'';if(avatar){if(!avatar.type.startsWith('image/'))throw new Error('Selecciona una imagen válida.');avatar_url=await mcUpload(avatar,'profiles')}const {data,error}=await sb.from('profiles').update({avatar_url,bio}).eq('id',authProfile.id).select('id,avatar_url,bio').maybeSingle();if(error)throw error;if(!data)throw new Error('Supabase no permitió actualizar tu perfil. Revisa los permisos de profiles.');authProfile.avatar_url=avatar_url;authProfile.bio=bio;toast('Perfil actualizado.');app()}
-function mcCommunity(){const admin=authProfile?.role==='admin';return `<section class="card mc-community-head"><div class="mc-community-title"><div><span class="mc-kicker">MOTOCARE SOCIAL</span><h2>Comunidad MotoCare</h2><p class="mu">Novedades, consejos y experiencias de nuestra comunidad.</p></div><span class="mc-community-mark">✦</span></div><form data-f="post" class="mc-postform"><textarea name="content" rows="3" maxlength="3000" placeholder="${admin?'¿Qué deseas compartir con tus clientes?':'Comparte una novedad con la comunidad. Tu publicación será revisada por el taller.'}"></textarea><label class="mc-upload mc-upload-large"><span class="mc-upicon">＋</span><span><strong>Solo fotos</strong><small>${admin?'Las imágenes se revisan automáticamente antes de publicarse.':'Adjunta una imagen para revisión automática de seguridad.'}</small></span><span class="mc-file-name">Sin archivo</span><input name="media" type="file" accept="image/jpeg,image/png,image/webp,image/gif"></label><div class="mc-post-actions"><small>${admin?'Las imágenes se revisan automáticamente antes de publicarse.':'El administrador revisará tu publicación antes de hacerla visible.'}</small><button class="btn" type="submit">${admin?'Publicar actualización':'Enviar para revisión'}</button></div><div class="mc-upload-progress" aria-live="polite"></div></form></section><div id="mcFeed" aria-live="polite">Cargando publicaciones…</div>`}
-async function mcLoadFeed(){const box=$('#mcFeed');if(!box)return;const u=me();const {data:all,error}=await sb.from('mc_posts').select('*').order('created_at',{ascending:false}).limit(100);if(error){box.textContent='No se pudieron cargar las publicaciones: '+error.message;return}const posts=(all||[]).filter(p=>p.status==='approved'||u?.role==='admin'||p.author_id===u?.id);const ids=posts.filter(p=>p.status==='approved').map(p=>p.id);let comments=[];if(ids.length){const r=await sb.from('mc_comments').select('*').in('post_id',ids).order('created_at');comments=r.data||[]}const profIds=[...new Set([...(posts||[]).map(p=>p.author_id),...comments.map(c=>c.author_id)])];let profs=[];if(profIds.length){const r=await sb.from('profiles').select('id,username,avatar_url').in('id',profIds);profs=r.data||[]}const who=id=>profs.find(x=>x.id===id);box.innerHTML=posts.map(p=>{const a=who(p.author_id),cs=comments.filter(c=>c.post_id===p.id),own=p.author_id===u?.id,admin=u?.role==='admin',pending=p.status!=='approved';return `<article class="card mc-post-card"><header class="mc-post-author"><span class="mc-post-avatar">${a?.avatar_url?`<img src="${esc(a.avatar_url)}" alt="">`:'✦'}</span><span><b>${esc(a?.username||'MotoCare')}</b><small>${fmt(p.created_at)} ${pending?' · En revisión':''}</small></span>${pending?`<span class="mc-pending">${admin?'Pendiente de aprobar':'Pendiente'}</span>`:''}</header>${p.content?`<p class="mc-post-copy">${esc(p.content)}</p>`:''}${p.media_path?(p.media_type?.startsWith('video/')?`<video src="${esc(p.media_path)}" controls playsinline preload="metadata" class="mc-post-media"></video>`:`<img src="${esc(p.media_path)}" alt="Imagen de publicación" loading="lazy" class="mc-post-media">`):''}<div class="mc-post-tools">${admin&&pending?`<button class="mc-text-action mc-approve" data-post-approve="${p.id}">✓ Aprobar</button><button class="mc-text-action mc-reject" data-post-reject="${p.id}">Rechazar</button>`:''}${own||admin?`<button class="mc-text-action" data-post-edit="${p.id}">Editar</button><button class="mc-text-action mc-reject" data-post-delete="${p.id}">Eliminar</button>`:''}</div>${!pending?`<div class="mc-comments">${cs.map(c=>`<p><b>${esc(who(c.author_id)?.username||'Usuario')}:</b> ${esc(c.content||'')}${c.image_path?`<br><img src="${esc(c.image_path)}" loading="lazy" alt="Imagen del comentario" class="mc-comment-image">`:''}</p>`).join('')}<form data-f="comment" data-post="${p.id}" class="mc-comment"><input name="content" maxlength="1000" placeholder="Escribe un comentario…"><label class="mc-upload mc-comment-upload" title="Adjuntar imagen"><span class="mc-upicon">＋</span><input name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" aria-label="Adjuntar imagen"></label><button class="btn sm">Comentar</button></form></div>`:''}</article>`}).join('')||'<div class="card">Todavía no hay publicaciones.</div>'}
-async function mcRealtimeSocial(){if(window.mcSocialChannel)sb.removeChannel(window.mcSocialChannel);window.mcSocialChannel=sb.channel('mc-social-live').on('postgres_changes',{event:'*',schema:'public',table:'mc_posts'},()=>mcLoadFeed()).on('postgres_changes',{event:'*',schema:'public',table:'mc_comments'},()=>mcLoadFeed()).subscribe()}
+function mcModerateText(text){
+ const raw=String(text||'').trim();
+ // Normalización para detectar acentos, separadores, números y letras repetidas.
+ const norm=raw.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
+  .replace(/[@4]/g,'a').replace(/[0]/g,'o').replace(/[1!|]/g,'i').replace(/3/g,'e').replace(/[5$]/g,'s').replace(/7/g,'t').replace(/8/g,'b')
+  .replace(/[^a-z0-9ñ]+/g,' ').replace(/([aeiou])\1+/g,'$1').replace(/(.)\1{2,}/g,'$1$1').replace(/\s+/g,' ').trim();
+ if(!norm)return {ok:true};
+ const compact=norm.replace(/\s+/g,'');
+ // Insultos y expresiones ofensivas frecuentes. Se incluyen variantes coloquiales.
+ const blocked=[
+  /\b(mierda|mierdas|puta|putas|puto|putos|joder|jodete|coño|coñazo|carajo|verga|vergacion|maricon|maricones|pendejo|pendeja|pendejos|idiota|idiotas|imbecil|imbeciles|estupido|estupida|estupidos|estupidas|maldito|maldita|malparido|malparida|hdp|bruja|brujas|cuca|cucas|perro|perra|perros|perras|mldt|maldito|maldita|hijo de puta|hijo puta|hija de puta|hija puta|vete a la mierda|vete al carajo|chinga tu madre|chingada|cabron|cabrona|cabroncete|zorra|culero|culera|mmg|mmgb|mmgvo|mamaguevo|mamagueba|mamaguebo|pajero|pajera|pajua|pajuo)\b/,
+  /\b(chupa|chupame|chupate)\s+(la\s+)?(pene|polla|verga|pija|poronga)\b/,
+  /\b(quieres|quiere|quiero|buscas|busca)\s+(pene|polla|verga|pija)\b/,
+  /\b(pene|polla|verga|pija)\s+(de\s+)?(mierda|puta)\b/,
+  /\b(mmgb|mmgvo|mmg)\s+pajaritos\b/,
+  /\b(chupa|chupas)\s+pena\b/,
+  /\b(hijo|hija)\s+(de\s+)?(puta|perra)\b/
+ ];
+ // En este chat se bloquea también la mención sexual explícita, incluso aislada.
+ const sexual=/\b(sexo|sex|sexual|follar|follame|follas|coger|cogeme|coges|pene|polla|verga|pija|coño|cuca|desnudo|desnuda|nudes|pack|prostitucion|prostituta|escort|masturbacion|porno|pornografia)\b/;
+ const solicitation=/\b(dame|quieres|quiere|quiero|buscas|busca|te apetece|te interesa|hacemos|hacer|tener|ofrezco|te doy|quedamos)\b.{0,45}\b(sexo|sexual|follar|coger|pack|nudes|cuca)\b/;
+ const compactBlocked=['damesexo','quieressexo','quierotenersexo','quierohacersexo','buscassexo','buscosexo','damecuca','quierocuca','sexopordinero'];
+ const isBlocked=blocked.some(r=>r.test(norm))||sexual.test(norm)||solicitation.test(norm)||compactBlocked.some(x=>compact.includes(x));
+ return isBlocked
+  ?{ok:false,message:'Mensaje bloqueado: contiene insultos, lenguaje vulgar o contenido sexual. Mantén la conversación respetuosa y relacionada con MotoCare.'}
+  :{ok:true};
+}
+async function mcSaveProfile(form){const avatar=form.querySelector('[name=avatar]')?.files?.[0],bio=form.querySelector('[name=bio]')?.value.trim()||'';let avatar_url=authProfile.avatar_url||'';if(avatar){if(!avatar.type.startsWith('image/'))throw new Error('Selecciona una imagen válida.');avatar_url=await mcUpload(avatar,'profiles')}const {data,error}=await sb.from('profiles').update({avatar_url,bio}).eq('id',authProfile.id).select('id,avatar_url,bio').maybeSingle();if(error)throw error;if(!data)throw new Error('Supabase no permitió actualizar tu perfil. Revisa los permisos de profiles.');authProfile.avatar_url=avatar_url;authProfile.bio=bio;try{mcChatProfiles=await mcProfiles()}catch(e){console.warn('No se pudo refrescar la lista de perfiles:',e)}toast('Perfil actualizado.');app()}
+function mcCommunity(){const admin=authProfile?.role==='admin';return `<section class="card mc-community-head"><div class="mc-community-glow"></div><div class="mc-community-title"><div><span class="mc-kicker">MOTOCARE SOCIAL · COMUNIDAD</span><h2>La comunidad se mueve contigo</h2><p class="mu">Comparte rutas, consejos, novedades y experiencias con otros amantes de las motos.</p></div><span class="mc-community-mark">✦</span></div><div class="mc-community-highlights"><span>🏍️ Experiencias reales</span><span>📸 Fotos y vídeos</span><span>🛡️ Comunidad moderada</span></div><form data-f="post" class="mc-postform"><label class="mc-compose-label" for="mcPostText">¿Qué quieres compartir hoy?</label><textarea id="mcPostText" name="content" rows="4" maxlength="3000" placeholder="Cuéntanos tu ruta, comparte un consejo o enseña cómo va tu moto…"></textarea><label class="mc-upload mc-upload-large"><span class="mc-upicon">＋</span><span><strong>Añadir foto o vídeo</strong><small>Fotos JPG, PNG, WEBP o GIF · Vídeos MP4, WEBM o MOV (máx. 50 MB)</small></span><span class="mc-file-name">Sin archivo</span><input name="media" type="file" accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime"></label><div class="mc-post-actions"><small>${admin?'Las fotos se revisan automáticamente. Los vídeos requieren aprobación manual antes de mostrarse.':'Las publicaciones y vídeos quedan pendientes de revisión del equipo MotoCare antes de hacerse públicos.'}</small><button class="btn" type="submit">${admin?'Compartir publicación':'Enviar publicación'}</button></div><div class="mc-upload-progress" aria-live="polite"></div></form></section><div class="mc-feed-heading"><div><span class="mc-kicker">EN EL GARAJE</span><h3>Últimas publicaciones</h3></div><span class="mc-feed-live">● Comunidad</span></div><div id="mcFeed" aria-live="polite">Cargando publicaciones…</div>`}
+async function mcLoadFeed(){
+ const box=$('#mcFeed');if(!box)return;
+ const u=me();
+ const {data:all,error}=await sb.from('mc_posts').select('*').order('created_at',{ascending:false}).limit(100);
+ if(error){box.textContent='No se pudieron cargar las publicaciones: '+error.message;return}
+ const posts=(all||[]).filter(p=>p.status==='approved'||u?.role==='admin'||p.author_id===u?.id);
+ const ids=posts.filter(p=>p.status==='approved').map(p=>p.id);
+ let comments=[],likes=[];
+ if(ids.length){
+  const [cr,lr]=await Promise.all([
+   sb.from('mc_comments').select('*').in('post_id',ids).order('created_at'),
+   sb.from('mc_post_likes').select('post_id,user_id').in('post_id',ids)
+  ]);
+  comments=cr.data||[];
+  if(lr.error)console.warn('No se pudieron cargar los Me gusta. Ejecuta la actualización SQL de seguridad:',lr.error);
+  else likes=lr.data||[];
+ }
+ const profIds=[...new Set([...(posts||[]).map(p=>p.author_id),...comments.map(c=>c.author_id)])];
+ let profs=[];
+ if(profIds.length){const r=await sb.from('profiles').select('id,username,avatar_url').in('id',profIds);profs=r.data||[]}
+ const who=id=>profs.find(x=>x.id===id);
+ box.innerHTML=posts.map(p=>{
+  const a=who(p.author_id),cs=comments.filter(c=>c.post_id===p.id),own=p.author_id===u?.id,admin=u?.role==='admin',pending=p.status!=='approved';
+  const postLikes=likes.filter(x=>x.post_id===p.id),liked=postLikes.some(x=>x.user_id===u?.id);
+  return `<article class="card mc-post-card">
+   <header class="mc-post-author"><span class="mc-post-avatar">${a?.avatar_url?`<img src="${esc(mcAvatarSrc(a.avatar_url))}" alt="">`:esc((a?.username||'M').charAt(0).toUpperCase())}</span><span><b>${esc(a?.username||'MotoCare')}</b><small>${fmt(p.created_at)} ${pending?' · En revisión':''}</small></span>${pending?`<span class="mc-pending">${admin?'Pendiente de aprobar':'Pendiente'}</span>`:''}</header>
+   ${p.content?`<p class="mc-post-copy">${esc(p.content)}</p>`:''}
+   ${p.media_path?(p.media_type?.startsWith('video/')?`<video src="${esc(p.media_path)}" controls playsinline preload="metadata" class="mc-post-media"></video>`:`<img src="${esc(p.media_path)}" alt="Imagen de publicación" loading="lazy" class="mc-post-media">`):''}
+   <div class="mc-post-tools">
+    ${!pending?`<button class="mc-text-action mc-like-action ${liked?'liked':''}" data-post-like="${esc(p.id)}" aria-pressed="${liked?'true':'false'}"> ${liked?'♥':'♡'} Me gusta · ${postLikes.length}</button>`:''}
+    ${admin&&pending?`<button class="mc-text-action mc-approve" data-post-approve="${esc(p.id)}">✓ Aprobar</button><button class="mc-text-action mc-reject" data-post-reject="${esc(p.id)}">Rechazar</button>`:''}
+    ${own||admin?`<button class="mc-text-action" data-post-edit="${esc(p.id)}">Editar</button><button class="mc-text-action mc-reject" data-post-delete="${esc(p.id)}">Eliminar</button>`:''}
+   </div>
+   ${!pending?`<div class="mc-comments">
+    ${cs.map(c=>{const cp=who(c.author_id);return `<div class="mc-comment-item"><span class="mc-comment-avatar">${cp?.avatar_url?`<img src="${esc(mcAvatarSrc(cp.avatar_url))}" alt="" loading="lazy">`:esc((cp?.username||'U').charAt(0).toUpperCase())}</span><div class="mc-comment-body"><b>${esc(cp?.username||'Usuario')}</b><p>${esc(c.content||'')}</p>${c.image_path?`<img src="${esc(c.image_path)}" loading="lazy" alt="Imagen o GIF del comentario" class="mc-comment-image">`:''}</div></div>`}).join('')}
+    <form data-f="comment" data-post="${esc(p.id)}" class="mc-comment">
+     <input name="content" maxlength="1000" placeholder="Escribe un comentario o elige un sticker…" aria-label="Comentario">
+     <div class="mc-comment-extra">
+      <button type="button" class="mc-text-action" data-sticker-toggle aria-expanded="false" aria-label="Mostrar stickers">☺ Stickers</button>
+      <button type="button" class="mc-text-action" data-gif-open aria-label="Adjuntar GIF">GIF</button>
+      <label class="mc-upload mc-comment-upload" title="Adjuntar imagen o GIF"><span class="mc-upicon">＋</span><input name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" aria-label="Adjuntar imagen o GIF"></label>
+     </div>
+     <div class="mc-sticker-tray" hidden aria-label="Stickers">${['🏍️','🔥','😍','👏','💙','😂','🏁','✨','🤘','❤️','😎','🙌'].map(x=>`<button type="button" data-sticker="${x}" aria-label="Añadir sticker ${x}">${x}</button>`).join('')}</div>
+     <button class="btn sm">Comentar</button>
+    </form>
+   </div>`:''}
+  </article>`;
+ }).join('')||'<div class="card">Todavía no hay publicaciones.</div>';
+}
+async function mcRealtimeSocial(){if(window.mcSocialChannel)sb.removeChannel(window.mcSocialChannel);window.mcSocialChannel=sb.channel('mc-social-live').on('postgres_changes',{event:'*',schema:'public',table:'mc_posts'},()=>mcLoadFeed()).on('postgres_changes',{event:'*',schema:'public',table:'mc_comments'},()=>mcLoadFeed()).on('postgres_changes',{event:'*',schema:'public',table:'mc_post_likes'},()=>mcLoadFeed()).on('postgres_changes',{event:'UPDATE',schema:'public',table:'profiles'},()=>mcLoadFeed()).subscribe()}
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const P=s=>String(s).toUpperCase().replace(/[^A-Z0-9]/g,''),fmt=t=>new Date(t).toLocaleString('es',{dateStyle:'short',timeStyle:'short'}),fd=s=>new Date(s+'T12:00').toLocaleDateString('es',{weekday:'short',day:'numeric',month:'short'}),dstr=x=>x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0'),today=()=>dstr(new Date());
@@ -668,7 +856,7 @@ function countUp(){$$('#app [data-n]').forEach(b=>{const m=String(b.dataset.n).m
 function app(){const u=me(),d=db(),adm=u.role==='admin',bd={};if(adm){bd.citas=d.citas.filter(c=>c.estado==='Pendiente').length;bd.chat=unread(d)}else{const m=d.chat[u.em]||[];bd.chat=m.length&&m[m.length-1].f==='a'?1:0}
  const T=adm?[['resumen','📊','Resumen'],['clientes','🏍️','Clientes y motos'],['ordenes','🔧','Órdenes'],['citas','📅','Citas'],['finanzas','💵','Finanzas'],['historial','🔍','Historial y búsqueda'],['repuestos','📦','Repuestos y sedes'],['chat','💬','Mensajes'],['comunidad','📰','Comunidad'],['perfil','👤','Mi perfil']]:[['resumen','🏠','Mi resumen'],['motos','🏍️','Mis motos'],['citas','📅','Mis citas'],['historial','🔍','Historial por placa'],['asesorias','💡','Asesorías'],['repuestos','📦','Repuestos'],['chat','💬','Chat con el taller'],['comunidad','📰','Comunidad'],['perfil','👤','Mi perfil']];
  if(!T.some(t=>t[0]===TAB))TAB='resumen';
- $('#app').innerHTML=`<div class="shell"><aside class="side"><div class="brand">Motor<b>Care</b></div><div class="me"><span class="mc-side-avatar">${u.avatar_url?`<img src="${esc(u.avatar_url)}" alt="Foto de ${esc(u.name)}" onerror="this.style.display='none';this.parentElement.classList.add('mc-avatar-fallback')">`:`<span>${esc((u.name||'U')[0].toUpperCase())}</span>`}</span><div class="mc-side-identity"><b>${esc(u.name)}</b><small>${adm?'Administrador':'Cliente'}</small></div></div>${T.map(t=>`<button data-t="${t[0]}" class="${t[0]===TAB?'on':''}"><span>${t[1]}</span> ${t[2]}${bd[t[0]]?`<em>${bd[t[0]]}</em>`:''}</button>`).join('')}</aside><div class="main" id="view">${V[TAB](u,d,adm)}</div></div>`;
+ $('#app').innerHTML=`<div class="shell"><aside class="side"><div class="brand">Motor<b>Care</b></div><div class="me"><span class="mc-side-avatar">${u.avatar_url?`<img src="${esc(mcAvatarSrc(u.avatar_url))}" alt="Foto de ${esc(u.name)}" onerror="this.style.display='none';this.parentElement.classList.add('mc-avatar-fallback')">`:`<span>${esc((u.name||'U')[0].toUpperCase())}</span>`}</span><div class="mc-side-identity"><b>${esc(u.name)}</b><small>${adm?'Administrador':'Cliente'}</small></div></div>${T.map(t=>`<button data-t="${t[0]}" class="${t[0]===TAB?'on':''}"><span>${t[1]}</span> ${t[2]}${bd[t[0]]?`<em>${bd[t[0]]}</em>`:''}</button>`).join('')}</aside><div class="main" id="view">${V[TAB](u,d,adm)}</div></div>`;
  if(TAB==='historial')hres();if(TAB==='repuestos')pres();if(TAB==='clientes')cres();if(TAB==='comunidad'){mcLoadFeed();mcRealtimeSocial()}gi('#view');
  if(FX){FX=0;countUp();const v=$('#view');v.classList.add('tin');setTimeout(()=>v.classList.remove('tin'),1200)}
  const m=$('#msgs');if(m)m.scrollTop=m.scrollHeight;if(TAB==='chat'){mcRefreshChat(false)}}
@@ -681,13 +869,50 @@ const mcUnlockAudio=()=>{try{const ctx=mcGetAudioContext();if(ctx?.state==='susp
 const mcSound=()=>{try{const ctx=mcGetAudioContext();if(!ctx)return;const play=()=>{const t=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(880,t);o.frequency.exponentialRampToValueAtTime(660,t+.15);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.30,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.30);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+.31)};if(ctx.state==='suspended'){ctx.resume().then(play).catch(e=>console.warn('No se pudo activar el sonido del chat:',e));return}play()}catch(e){console.warn('Sonido de chat:',e)}};
 let mcLastTypingSound=0;const mcTypingSound=()=>{try{const now=Date.now();if(now-mcLastTypingSound<105)return;mcLastTypingSound=now;const ctx=mcGetAudioContext();if(!ctx)return;const play=()=>{const t=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();o.type='triangle';o.frequency.setValueAtTime(1250+Math.random()*350,t);o.frequency.exponentialRampToValueAtTime(780,t+.035);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.07,t+.004);g.gain.exponentialRampToValueAtTime(.0001,t+.06);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+.065)};if(ctx.state==='suspended'){ctx.resume().then(play).catch(()=>{});return}play()}catch(e){}};
 const mcCurrent=()=>authProfile?.id||authUser?.id;
-async function mcProfiles(){const rpc=me()?.role==='admin'?'mc_chat_users':'mc_chat_admin_profile';const {data,error}=await sb.rpc(rpc);if(error)throw error;return Array.isArray(data)?data:(data?[data]:[])}
+function mcAvatarSrc(url){if(!url)return '';const raw=String(url);return raw+(raw.includes('?')?'&':'?')+'mc_avatar_v='+Date.now()}
+async function mcProfiles(){
+ const rpc=me()?.role==='admin'?'mc_chat_users':'mc_chat_admin_profile';
+ const {data,error}=await sb.rpc(rpc);if(error)throw error;
+ const rows=Array.isArray(data)?data:(data?[data]:[]);
+ const ids=[...new Set(rows.map(p=>p.id).filter(Boolean))];
+ if(ids.length){
+  try{
+   const {data:profiles,error:profileError}=await sb.from('profiles').select('id,username,avatar_url').in('id',ids);
+   if(profileError)throw profileError;
+   for(const p of rows){
+    const extra=(profiles||[]).find(x=>x.id===p.id);
+    if(extra){p.username=extra.username||p.username||'';p.avatar_url=extra.avatar_url??p.avatar_url??''}
+   }
+  }catch(e){console.warn('No se pudieron actualizar los perfiles del chat. Comprueba la política RLS de profiles:',e)}
+ }
+ return rows
+}
 function mcOtherId(row,id){return row.sender_id===id?row.recipient_id:row.sender_id}
 function mcStatus(m){if(m.read_at)return '<span class="mc-ticks read" title="Leído">✓✓</span>';if(m.delivered_at)return '<span class="mc-ticks" title="Entregado">✓✓</span>';return '<span class="mc-ticks" title="Enviado">✓</span>'}
-function mcDrawMessages(){const box=$('#msgs'),u=me();if(!box||!u)return;const id=mcCurrent(),adm=u.role==='admin';const rows=mcChatRows.filter(m=>adm?(m.sender_id===id||m.recipient_id===id):(m.sender_id===id||m.recipient_id===id));box.innerHTML=rows.map(m=>{const mine=m.sender_id===id;const profile=mcChatProfiles.find(p=>p.id===(mine?m.recipient_id:m.sender_id));const label=mine?'Tú':(profile?.username||profile?.email||'Taller');return `<div class="b ${mine?'me':''}">${esc(m.content)}<small>${esc(label)} · ${fmt(m.created_at)} ${mine?mcStatus(m):''}</small></div>`}).join('')||'<p style="color:var(--mut);margin:auto">Aún no hay mensajes. Escribe el primero.</p>';box.scrollTop=box.scrollHeight}
+function mcDrawMessages(){
+ const box=$('#msgs'),u=me();if(!box||!u)return;
+ const id=mcCurrent();
+ let target=null;
+ if(u.role==='admin')target=mcChatProfiles.find(p=>p.email===CH&&p.role!=='admin');
+ else target=mcChatProfiles.find(p=>p.role==='admin');
+ const rows=mcChatRows.filter(m=>{
+  if(u.role==='admin'&&!target)return false;
+  const otherId=m.sender_id===id?m.recipient_id:m.sender_id;
+  return (m.sender_id===id||m.recipient_id===id)&&(!target||otherId===target.id);
+ });
+ box.innerHTML=rows.map(m=>{
+  const mine=m.sender_id===id;
+  const other=mcChatProfiles.find(p=>p.id===(mine?m.recipient_id:m.sender_id));
+  const profile=mine?authProfile:other;
+  const label=mine?'Tú':(profile?.username||profile?.email||'Taller');
+  const avatar=profile?.avatar_url?`<img src="${esc(mcAvatarSrc(profile.avatar_url))}" alt="" loading="lazy" onerror="this.remove()">`:`<span>${esc((label||'U').trim().charAt(0).toUpperCase())}</span>`;
+  return `<div class="mc-chat-row ${mine?'mine':''}"><span class="mc-chat-avatar" aria-hidden="true">${avatar}</span><div class="b ${mine?'me':''}">${esc(m.content)}<small><b>${esc(label)}</b> · ${fmt(m.created_at)} ${mine?mcStatus(m):''}</small></div></div>`;
+ }).join('')||'<p style="color:var(--mut);margin:auto">Aún no hay mensajes en esta conversación. Escribe el primero.</p>';
+ box.scrollTop=box.scrollHeight;
+}
 async function mcRefreshChat(sound=false){const u=me();if(!u||TAB!=='chat')return;const id=mcCurrent();try{mcChatProfiles=await mcProfiles();let q=sb.from('mc_messages').select('id,sender_id,recipient_id,content,created_at,delivered_at,read_at').order('created_at',{ascending:true}).limit(500);if(u.role==='admin')q=q.or(`sender_id.eq.${id},recipient_id.eq.${id}`);else q=q.or(`sender_id.eq.${id},recipient_id.eq.${id}`);const {data,error}=await q;if(error)throw error;const old=mcChatRows.map(x=>x.id).join(',');mcChatRows=data||[];const fresh=mcChatRows.filter(x=>x.recipient_id===id&&!x.read_at);if(fresh.length){const now=new Date().toISOString();await sb.from('mc_messages').update({delivered_at:now}).in('id',fresh.map(x=>x.id));if(TAB==='chat'&&$('#msgs'))await sb.from('mc_messages').update({read_at:now}).in('id',fresh.map(x=>x.id));}
  if(sound&&old!==mcChatRows.map(x=>x.id).join(',')){const newest=mcChatRows[mcChatRows.length-1];if(newest&&newest.sender_id!==id&&newest.id!==mcLastMessageId)mcSound()};mcLastMessageId=mcChatRows[mcChatRows.length-1]?.id||null;
- if(u.role==='admin'){const others=[...new Set(mcChatRows.map(m=>mcOtherId(m,id)))];const list=mcChatProfiles.filter(p=>others.includes(p.id)&&p.role!=='admin');const threads=$('#mcThreads');if(threads){threads.innerHTML=list.map(p=>`<button data-ch="${esc(p.email)}" class="${CH===p.email?'on':''}">${esc(p.username||p.email)}${mcChatRows.some(m=>mcOtherId(m,id)===p.id&&m.recipient_id===id&&!m.read_at)?' 🔴':''}</button>`).join('')||'<small>Aún no hay conversaciones todavía.</small>';if(!CH&&list.length){CH=list[0].email;threads.querySelector('button')?.classList.add('on')}}}
+ if(u.role==='admin'){const others=[...new Set(mcChatRows.map(m=>mcOtherId(m,id)))];const list=mcChatProfiles.filter(p=>others.includes(p.id)&&p.role!=='admin');const threads=$('#mcThreads');if(threads){threads.innerHTML=list.map(p=>`<button data-ch="${esc(p.email)}" class="mc-thread-button ${CH===p.email?'on':''}"><span class="mc-thread-avatar">${p.avatar_url?`<img src="${esc(mcAvatarSrc(p.avatar_url))}" alt="" loading="lazy" onerror="this.remove()">`:`${esc((p.username||p.email||'U').trim().charAt(0).toUpperCase())}`}</span><span class="mc-thread-label">${esc(p.username||p.email)}</span>${mcChatRows.some(m=>mcOtherId(m,id)===p.id&&m.recipient_id===id&&!m.read_at)?'<span class="mc-thread-unread" aria-label="Mensajes sin leer">●</span>':''}</button>`).join('')||'<small>Aún no hay conversaciones todavía.</small>';if(!CH&&list.length){CH=list[0].email;threads.querySelector('button')?.classList.add('on')}}}
  mcDrawMessages();const status=$('#mcChatStatus');if(status){const target=u.role==='admin'?mcChatProfiles.find(p=>p.email===CH):mcChatProfiles.find(p=>p.role==='admin');if(target){const {data:presence}=await sb.from('mc_presence').select('is_online,last_seen').eq('user_id',target.id).maybeSingle();status.textContent=presence?.is_online?'En línea':'Desconectado';}}
  }catch(e){console.error('Chat MotoCare:',e);const box=$('#msgs');if(box)box.innerHTML='<p style="color:#c0392b">No se pudo cargar el chat. Revisa las políticas de acceso de profiles y mc_messages en Supabase.</p>';}}
 async function mcSendTo(email,kind,text){const check=mcModerateText(text);if(!check.ok)throw new Error(check.message);const u=me(),id=mcCurrent();if(!u||!id)return;mcChatProfiles=await mcProfiles();let target;if(kind==='a')target=mcChatProfiles.find(p=>p.email===email&&p.role!=='admin');else target=mcChatProfiles.find(p=>p.role==='admin');if(!target)throw new Error('No se encontró el destinatario del mensaje.');const {error}=await sb.from('mc_messages').insert({sender_id:id,recipient_id:target.id,content:text});if(error)throw error}
@@ -697,6 +922,22 @@ function mcStartChat(){if(mcChatChannel){sb.removeChannel(mcChatChannel);mcChatC
 window.addEventListener('beforeunload',()=>{if(mcPresenceTimer)clearInterval(mcPresenceTimer);mcPresence(false)});
 
 A.addEventListener('click',async e=>{const t=e.target.closest('button');if(!t)return;const d=db(),u=me(),D=t.dataset;
+ if(D.stickerToggle){const form=t.closest('form'),tray=form?.querySelector('.mc-sticker-tray');if(tray){tray.hidden=!tray.hidden;t.setAttribute('aria-expanded',String(!tray.hidden))}return}
+ if(D.sticker){const form=t.closest('form'),input=form?.querySelector('[name=content]');if(input){input.value=(input.value+' '+D.sticker).trim();input.focus()}return}
+ if(D.gifOpen){t.closest('form')?.querySelector('[name=image]')?.click();return}
+ if(D.postLike){
+  if(!u?.id){toast('Inicia sesión para dar Me gusta.');return}
+  t.disabled=true;
+  try{
+   const {data:existing,error:readError}=await sb.from('mc_post_likes').select('post_id').eq('post_id',D.postLike).eq('user_id',u.id).maybeSingle();
+   if(readError)throw readError;
+   if(existing){const {error}=await sb.from('mc_post_likes').delete().eq('post_id',D.postLike).eq('user_id',u.id);if(error)throw error}
+   else{const {error}=await sb.from('mc_post_likes').insert({post_id:D.postLike,user_id:u.id});if(error)throw error}
+   await mcLoadFeed();
+  }catch(err){console.error('Me gusta:',err);toast('No se pudo actualizar el Me gusta. Comprueba que ejecutaste la actualización SQL.')}
+  finally{t.disabled=false}
+  return;
+ }
  if(D.postApprove){const {error}=await sb.from('mc_posts').update({status:'approved'}).eq('id',D.postApprove);if(error){toast('No se pudo aprobar: '+error.message);return}await mcLoadFeed();toast('Publicación aprobada y visible.');return}else if(D.postReject){if(!confirm('¿Rechazar y eliminar esta publicación?'))return;const {error}=await sb.from('mc_posts').delete().eq('id',D.postReject);if(error){toast('No se pudo rechazar: '+error.message);return}await mcLoadFeed();toast('Publicación rechazada.');return}else if(D.postDelete){if(!confirm('¿Eliminar esta publicación?'))return;const {error}=await sb.from('mc_posts').delete().eq('id',D.postDelete);if(error){toast('No se pudo eliminar: '+error.message);return}await mcLoadFeed();toast('Publicación eliminada.');return}else if(D.postEdit){const post=(await sb.from('mc_posts').select('id,content').eq('id',D.postEdit).maybeSingle()).data;if(!post)return;const content=prompt('Editar publicación:',post.content||'');if(content===null)return;const {error}=await sb.from('mc_posts').update({content:content.trim(),...(u?.role==='admin'?{}:{status:'pending'})}).eq('id',D.postEdit);if(error){toast('No se pudo editar: '+error.message);return}await mcLoadFeed();toast('Publicación actualizada.');return}
  if(D.t){TAB=D.t;FX=1;app();scrollTo({top:0,behavior:'smooth'})}else if(D.ch){CH=D.ch;app()}
  else if('cm' in D){const n=D.cm==='0'?new Date():new Date(CAL.y,CAL.m+Number(D.cm),1);CAL.y=n.getFullYear();CAL.m=n.getMonth();if(D.cm==='0')CAL.sel=today();app()}
@@ -708,7 +949,7 @@ A.addEventListener('click',async e=>{const t=e.target.closest('button');if(!t)re
  else if(D.ask){const p=d.parts.find(x=>x.id==D.ask);send(u.em,'u','Hola, ¿tienen disponible «'+p.n+'» en otra sede?');TAB='chat';app();toast('Consulta enviada al taller.')}
  else if('delAcc' in D&&confirm('¿Eliminar tu cuenta y tus datos? Para borrar la cuenta de autenticación, contacta al administrador. ¿Quieres cerrar sesión y borrar los datos locales de esta sesión?')){const pl=d.bikes.filter(b=>b.owner===u.em).map(b=>b.placa);d.bikes=d.bikes.filter(b=>b.owner!==u.em);d.orders=d.orders.filter(o=>!pl.includes(o.placa));d.citas=d.citas.filter(c=>c.owner!==u.em);delete d.chat[u.em];save(d);await sb.auth.signOut();authUser=null;authProfile=null;render();toast('Sesión cerrada y datos locales eliminados. La cuenta Auth debe eliminarse por un proceso administrativo seguro.')}});
 A.addEventListener('input',e=>{const i=e.target.id;if(i==='hq')hres();if(i==='pq')pres();if(i==='cq')cres();if(i==='fx'&&mcTypingChannel){const u=me();if(u){mcProfiles().then(ps=>{const target=u.role==='admin'?ps.find(p=>p.email===CH):ps.find(p=>p.role==='admin');if(target)mcTypingChannel.send({type:'broadcast',event:'typing',payload:{sender_id:u.id,recipient_id:target.id,sent_at:Date.now()}})}).catch(()=>{})}}});
-A.addEventListener('change',e=>{const i=e.target,d=db();if(i.type==='file'){const label=i.closest('.mc-upload'),name=label?.querySelector('.mc-file-name');if(name)name.textContent=i.files?.[0]?.name||'Ningún archivo'}if(i.id==='pc')pres();
+A.addEventListener('change',e=>{const i=e.target,d=db();if(i.type==='file'){const label=i.closest('.mc-upload'),name=label?.querySelector('.mc-file-name'),file=i.files?.[0];if(name)name.textContent=file?(file.type.startsWith('video/')?'🎬 '+file.name:'📷 '+file.name):'Sin archivo'}if(i.id==='pc')pres();
  if(i.dataset.st){d.orders.find(x=>x.id==i.dataset.st).estado=i.value;save(d);toast('Estado actualizado.')}
  if(i.dataset.ce){const c=d.citas.find(x=>x.id==i.dataset.ce);c.estado=i.value;save(d);if(c.owner)send(c.owner,'a','Tu cita del '+fd(c.fecha)+' ('+c.servicio+') está '+i.value.toLowerCase()+'.');app();toast('Cita actualizada.')}
  if(i.dataset.sk){const[id,s]=i.dataset.sk.split('|'),v=Math.max(0,Math.min(999,parseInt(i.value)||0));d.parts.find(x=>x.id==id).s[s]=v;i.value=v;save(d);toast('Stock actualizado.')}});
@@ -732,8 +973,8 @@ A.addEventListener('submit',async e=>{e.preventDefault();const f=e.target.datase
  else if(f==='ase'){if(!check([[$('#fq'),x=>x.value.trim().length<10,'Cuéntanos un poco más (mínimo 10 caracteres).']]))return;send(u.em,'u','[Asesoría: '+v('ft')+'] '+clean(v('fq')));TAB='chat';app();toast('Pregunta enviada. El taller te responderá aquí.')}
  else if(f==='msg'){const x=clean(v('fx'));if(!x){toast('Escribe un mensaje.');return}const btn=e.submitter;btn.disabled=true;try{await mcSendMessage(x);$('#fx').value='';await mcRefreshChat(false);$('#fx')?.focus()}catch(err){console.error(err);toast(err.message||'No se pudo enviar el mensaje.')}finally{btn.disabled=false}}
  else if(f==='profile'){try{await mcSaveProfile(e.target)}catch(err){console.error(err);toast('No se pudo guardar el perfil: '+err.message)}}
- else if(f==='post'){const content=e.target.querySelector('[name=content]')?.value.trim()||'';const file=e.target.querySelector('[name=media]')?.files?.[0];if(!content&&!file){toast('Escribe algo o adjunta una imagen.');return}const textCheck=mcModerateText(content);if(!textCheck.ok){toast(textCheck.message);return}const btn=e.submitter,progress=e.target.querySelector('.mc-upload-progress');btn.disabled=true;btn.textContent='Subiendo…';if(progress)progress.textContent='Preparando publicación…';try{let media_path=null,media_type=null,videoNeedsReview=false;if(file){if(file.type.startsWith('image/')&&!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Formato de imagen no admitido.');if(file.type.startsWith('video/')&&!['video/mp4','video/webm','video/quicktime'].includes(file.type))throw new Error('Formato de video no admitido. Usa MP4, WEBM o MOV.');if(progress)progress.textContent='Revisando y subiendo imagen…';const uploaded=await mcUpload(file,'posts');if(typeof uploaded==='string')media_path=uploaded;else{media_path=uploaded.publicUrl;videoNeedsReview=uploaded.requiresReview===true}media_type=file.type}const status=u.role==='admin'&&!videoNeedsReview?'approved':'pending';const {error}=await sb.from('mc_posts').insert({author_id:u.id,content,media_path,media_type,status});if(error)throw error;e.target.reset();if(progress)progress.textContent='';await mcLoadFeed();toast(videoNeedsReview?'Video bloqueado por seguridad.':status==='approved'?'Publicación compartida.':'Enviada al administrador para revisión.')}catch(err){console.error(err);toast('No se pudo publicar: '+err.message);if(progress)progress.textContent=''}finally{btn.disabled=false;btn.textContent=u.role==='admin'?'Publicar actualización':'Enviar para revisión'}}
- else if(f==='comment'){const post_id=e.target.dataset.post,content=e.target.querySelector('[name=content]')?.value.trim()||'',file=e.target.querySelector('[name=image]')?.files?.[0];if(!content&&!file){toast('Escribe un comentario o adjunta una imagen.');return}const btn=e.submitter;btn.disabled=true;try{const check=mcModerateText(content);if(!check.ok)throw new Error(check.message);let image_path=null;if(file)image_path=await mcUpload(file,'comments');const {error}=await sb.from('mc_comments').insert({post_id,author_id:u.id,content,image_path});if(error)throw error;e.target.reset();await mcLoadFeed();toast('Comentario publicado.')}catch(err){console.error(err);toast('No se pudo comentar: '+err.message)}finally{btn.disabled=false}}
+ else if(f==='post'){const content=e.target.querySelector('[name=content]')?.value.trim()||'';const file=e.target.querySelector('[name=media]')?.files?.[0];if(!content&&!file){toast('Escribe algo o adjunta una foto o vídeo.');return}const textCheck=mcModerateText(content);if(!textCheck.ok){toast(textCheck.message);return}const btn=e.submitter,progress=e.target.querySelector('.mc-upload-progress');btn.disabled=true;btn.textContent='Subiendo…';if(progress)progress.textContent='Preparando publicación…';try{let media_path=null,media_type=null,videoNeedsReview=false;if(file){if(file.type.startsWith('image/')&&!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Formato de imagen no admitido.');if(file.type.startsWith('video/')&&!['video/mp4','video/webm','video/quicktime'].includes(file.type))throw new Error('Formato de vídeo no admitido. Usa MP4, WEBM o MOV.');if(progress)progress.textContent=file.type.startsWith('video/')?'Subiendo vídeo…':'Revisando y subiendo imagen…';const uploaded=await mcUpload(file,'posts');if(typeof uploaded==='string')media_path=uploaded;else{media_path=uploaded.publicUrl;videoNeedsReview=uploaded.requiresReview===true}media_type=file.type}const status=u.role==='admin'&&!videoNeedsReview?'approved':'pending';const {error}=await sb.from('mc_posts').insert({author_id:u.id,content,media_path,media_type,status});if(error)throw error;e.target.reset();const fileLabel=e.target.querySelector('.mc-file-name');if(fileLabel)fileLabel.textContent='Sin archivo';if(progress)progress.textContent='';await mcLoadFeed();toast(videoNeedsReview?'Vídeo subido. Quedó pendiente de aprobación manual.':status==='approved'?'Publicación compartida.':'Enviada al administrador para revisión.')}catch(err){console.error(err);toast('No se pudo publicar: '+err.message);if(progress)progress.textContent=''}finally{btn.disabled=false;btn.textContent=u.role==='admin'?'Compartir publicación':'Enviar publicación'}}
+ else if(f==='comment'){const post_id=e.target.dataset.post,content=e.target.querySelector('[name=content]')?.value.trim()||'',file=e.target.querySelector('[name=image]')?.files?.[0];if(!content&&!file){toast('Escribe un comentario, elige un sticker o adjunta una imagen/GIF.');return}if(content.length>1000){toast('El comentario no puede superar los 1.000 caracteres.');return}const btn=e.submitter;btn.disabled=true;try{const check=mcModerateText(content);if(!check.ok)throw new Error(check.message);let image_path=null;if(file){if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Adjunta una imagen JPG, PNG, WEBP o GIF.');if(file.size>10*1024*1024)throw new Error('La imagen o GIF supera el límite de 10 MB.');image_path=await mcUpload(file,'comments')}const {error}=await sb.from('mc_comments').insert({post_id,author_id:u.id,content,image_path});if(error)throw error;e.target.reset();await mcLoadFeed();toast('Comentario publicado.')}catch(err){console.error(err);toast('No se pudo comentar: '+err.message)}finally{btn.disabled=false}}
  else if(f==='pw'){if(!check([[$('#f1'),x=>!x.value,'Escribe tu contraseña actual.'],[$('#f2'),x=>!okPw(x.value),'Mínimo 8 caracteres, con letras y números.']]))return;
   const {error:verifyError}=await sb.auth.signInWithPassword({email:u.em,password:$('#f1').value});if(verifyError){$('#f1').nextElementSibling.textContent='La contraseña actual no es correcta.';return}
   const {error:updateError}=await sb.auth.updateUser({password:$('#f2').value});if(updateError){$('#f2').nextElementSibling.textContent='No se pudo actualizar la contraseña.';return}e.target.reset();toast('Contraseña actualizada.')}});
